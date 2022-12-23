@@ -1,6 +1,8 @@
 import MapView, { Marker } from "react-native-maps";
-import React, {useState} from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, {useLayoutEffect, useState} from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const initialRegion = {
     latitude: 37.4219023,
@@ -8,7 +10,7 @@ const initialRegion = {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };
-const MapScreen = () => {
+const MapScreen = ({navigation}) => {
   const [selectedLocation, setSelectedLocation] = useState("")
   const handleSelectedLocation = (event) => {
     setSelectedLocation({
@@ -16,6 +18,23 @@ const MapScreen = () => {
       lng: event.nativeEvent.coordinate.longitude,
     });
   };
+
+  const handleSaveLocstion = () => {
+    if(selectedLocation){
+      navigation.navgate("Nuevo", {mapLocation: selectedLocation});
+    }
+  };
+  
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={handleSaveLocstion}>
+          <Ionicons name="md-save-outline" color="white" size={22}/>
+        </TouchableOpacity>
+      )
+    })
+  }, [])
+  
   return (
     <MapView
       initialRegion={initialRegion}

@@ -2,13 +2,14 @@ import * as Location from "expo-location";
 
 import { Alert, Button, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react'
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import {COLORS} from '../constants/index';
 import MapPreview from "./MapPreview";
-import { useNavigation } from "@react-navigation/native";
 
 const LocationSelector = ({onLocation}) => {
     const navigation = useNavigation()
+    const route = useRoute()
     const [pickedLocation, setPickedLocation] = useState();
 
     const verifyPermissons = async () => {
@@ -49,6 +50,7 @@ const LocationSelector = ({onLocation}) => {
         navigation.navigate("Map");
     };
     
+    const mapLocation = route?.params?.mapLocation
     
     return (
         <View style={styles.container}>
