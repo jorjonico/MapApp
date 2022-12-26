@@ -14,6 +14,7 @@ const PlaceDetailScreen = ({route}) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.textContainer}>
+        <Text style={styles.title2}>{place.title}</Text>
         <Text style={styles.title}>{place.address}</Text>
       </View>
       <Image source={{uri: place.image}} style={styles.image}/>
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: "35%",
-    minHeight: 300,
+    minHeight: 100,
     width: "100%",
     padding: 20,
   },
@@ -69,6 +70,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 15,
+  },
+  title2: {
+    fontSize: 25,
+    color: COLORS.DARK_SIENNA
   },
 });
 
