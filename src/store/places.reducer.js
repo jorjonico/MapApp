@@ -14,7 +14,8 @@ export default (state = initialState, action) => {
         action.payload.image, 
         action.payload.address, 
         action.payload.lat, 
-        action.payload.lng );
+        action.payload.lng 
+        );
       return {
         ...state,
         places: state.places.concat(newPlace),

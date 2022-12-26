@@ -29,6 +29,6 @@ export const addPlace = (title, image, location) => {
       console.log(err.message);
       throw err;
     }
-    dispatch({ type: ADD_PLACE, payload: { title, image: Path, address, lat: location.lat, lng: location.lng } });
+    dispatch({ type: ADD_PLACE, payload: { title, image: Path, address, lat: location.lat, lng: location.lng },});
   };
 };

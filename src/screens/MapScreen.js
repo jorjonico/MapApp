@@ -11,8 +11,10 @@ const initialRegion = {
     longitudeDelta: 0.0421,
   };
 const MapScreen = ({navigation}) => {
-  const [selectedLocation, setSelectedLocation] = useState("")
+  const [selectedLocation, setSelectedLocation] = useState();
+  
   const handleSelectedLocation = (event) => {
+    console.log(event.nativeEvent.coordinate)
     setSelectedLocation({
       lat: event.nativeEvent.coordinate.latitude,
       lng: event.nativeEvent.coordinate.longitude,
@@ -20,9 +22,12 @@ const MapScreen = ({navigation}) => {
   };
 
   const handleSaveLocstion = () => {
-    if(selectedLocation){
-      navigation.navgate("Nuevo", {mapLocation: selectedLocation});
-    }
+      navigation.navigate("Nuevo", {
+        mapLocation: {
+          lat: -34.91956339367384,
+          lng: -57.95161183923483,
+        },
+      });
   };
   
   useLayoutEffect(() => {
@@ -37,6 +42,7 @@ const MapScreen = ({navigation}) => {
   
   return (
     <MapView
+      provider="google"
       initialRegion={initialRegion}
       style={styles.container}
       onPress={handleSelectedLocation}
